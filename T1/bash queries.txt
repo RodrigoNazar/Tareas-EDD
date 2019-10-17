@@ -1,0 +1,20 @@
+./decode ./tests/test_00.png ./tests/test_00.txt ./output/test_00.txt
+diff ./output_correcto/test_01.txt ./output/test_01.txt
+
+for (( i=0; i<9; i++ ))
+do
+    echo ""  
+    echo "Programa $i"
+    echo ""
+    ./decode ./tests/test_0$i.png tests/test_0$i.txt ./output/test_0$i.txt
+    # echo ""
+    # echo "Valgrind $i"
+    # valgrind ./decode tests/test_0$i.png ./tests/test_0$i.txt ./output/test_0$i.txt
+    # echo ""
+    # echo "diff $i"
+    # diff ./output_correcto/test_0$i.txt ./output/test_0$i.txt
+    echo ""
+    echo "Time $i"
+    time ./decode ./tests/test_0$i.png ./tests/test_0$i.txt ./output/test_0$i.txt
+    echo ""
+done

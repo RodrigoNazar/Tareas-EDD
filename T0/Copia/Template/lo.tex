@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,twoside,margin=1in]{geometry}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calligra}
+\usepackage{calrsfs}
+\usepackage[colorlinks=true, linkcolor=blue,urlcolor=blue,citecolor=red]{hyperref}
+\usepackage{fancyhdr,graphicx,tabularx,multirow,caption,booktabs,enumitem,amssymb,amsmath,amsfonts,amsbsy,bookmark,calc,pdfpages,cancel, setspace,wrapfig,lastpage,parskip,rotating,tablefootnote,mdframed,longtable,bm,multicol,float,blindtext}
+\definecolor{webgreen}{rgb}{0, 0.5, 0}
+\definecolor{webblue}{rgb}{0, 0, 0.5}
+\definecolor{webred}{rgb}{0.5, 0, 0}
+\usepackage[medium,sc]{titlesec}
+\usepackage[bottom]{footmisc}
+\captionsetup[figure]{font={small},labelfont={sc},name={Figura},labelsep=period}
+\captionsetup[table]{font={small},labelfont={sc},name={Tabla},labelsep=period}
+\usepackage{libertine,libertinust1math}\renewcommand{\ttdefault}{lmtt}
+\usepackage[T1]{fontenc}
+\pagestyle{fancy}\renewcommand{\headrulewidth}{0pt}\fancyfoot{}\fancyhead{}
+\newcommand{\rfigura}[1]{Figura \ref{#1}}
+\newcommand{\rtabla}[1]{Tabla \ref{#1}}
+\begin{document}
+	\thispagestyle{empty}
+	\begin{center}
+		\includegraphics[width=0.62in]{logo}\\\large
+		\rule[1.75ex]{3in}{0.6pt}\\\vspace{-1.2ex}
+		\scshape Pontificia Universidad Católica de Chile\\Escuela de Ingeniería -- Departamento de Ciencia de la Computación\\\vspace{10pc}
+		\normalfont\large\sffamily\textbf{IIC2133 --} Estructuras de Datos y Algoritmos\\
+		\normalfont\Huge\scshape
+		Informe Tarea 0
+		\rule[1em]{\linewidth}{2pt}\\\vspace{-1.2ex}
+	\end{center}\vspace{2pc}
+	\begin{center}\sffamily\begin{tabular}{l}
+		\large
+		Rodrigo Nazar Meier
+		\end{tabular}
+	\end{center}
+	\vspace{14pc}
+	\begin{tabular}{@{}ll}
+		\textbf{Profesor}&Yadran Eterovic\\
+		\textbf{Fecha}&28 de Agosto de 2019
+	\end{tabular}
+	\newpage
+	%===================================================================%
+	\section{Complejidad del Algoritmo}
+	
+	El algoritmo se basa en recorrer cada píxel de la imagen, chequeando si el valor de cada canal (R, G y B) en este sea 255. Si uno de estos cumple esta condición, entonces se procede a calcular el filtro mediana de los píxeles adyacentes que se encuentran a una distancia 1 y 0 en la métrica $D_8$. Esta medida de distancia entre dos píxeles de coordenadas $p_1 = (x,\, y)$ y $p_2 = (s, t)$ se define como: $$D_8(p_1,\,p_2) = max(|x-s| + |y-t|)$$
+	
+	Esta métrica se ilustra en la siguiente figura:
+	
+	\begin{table}[h]\centering
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			2 & 2 & 2 & 2 & 2 \\
+			\hline
+			2& 1 & 1 & 1 & 2 \\
+			\hline
+			2& 1 & 0 & 1 & 2 \\
+			\hline
+			2& 1 & 1 & 1 & 2 \\
+			\hline
+			2& 2 & 2 & 2 & 2 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	Siguiendo con la explicación, el filtro mediana lo implementé ordenando el arreglo con \textbf{Insertion Sort} y luego se retorna el elemento del medio. Este algoritmo normalmente tiene complejidad $\mathcal{O}(n^2)$ en el caso promedio. En esta implementación $n = 9$ independiente de la imagen, por lo que esta operación es constante y no interfiere en la complejidad del algoritmo.
+	
+	Luego, la complejidad del algoritmo está en recorrer la misma fotografía. Esto se logra mediante un doble ciclo \textit{for}, por lo que la complejidad es $$\mathcal{O}(n\times m)$$ Donde $n$ y $m$ son las dimensiones de la foto a procesar.
+	
+	Si consideramos el número de píxeles blancos (digamos que una imagen tiene $b$), podríamos expresar la complejidad de manera más precisa como: $$\mathcal{O}(n\times m + b\times9^2)\in\mathcal{O}(n\times m)$$ Concluyendo que la complejidad final está en $\mathcal{O}(n\times m)$.
+	
+	
+	%===================================================================%	
+		
+	
+\end{document}

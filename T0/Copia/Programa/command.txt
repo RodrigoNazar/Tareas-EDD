@@ -1,0 +1,57 @@
+./filter ./tests/test_01.png output.png
+
+#!/bin/bash
+make
+for (( i=0; i<10; i++ ))
+do
+    echo ""
+    echo "Valgrind $i"
+    valgrind ./filter tests/test_0$i.png tests/intentos/test_0$i.png
+    # echo "filter $i"
+    # ./filter tests/test_0$i.png tests/intentos/test_0$i.png
+    echo ""
+    echo "diff $i"
+    diff tests/intentos/test_0$i.png tests/respuestas/test_0$i.png
+    echo ""
+    echo "Time $i"
+    time ./filter tests/test_0$i.png tests/intentos/test_0$i.png
+    echo ""
+done
+
+make
+for (( i=0; i<31; i++ ))
+do
+  ./filter ./tests/test_01.png output.png i*30 900-i*30
+done
+
+./filter ./tests/test_01.png output.png 0 900
+./filter ./tests/test_01.png output.png 30 870
+./filter ./tests/test_01.png output.png 60 840
+./filter ./tests/test_01.png output.png 90 810
+./filter ./tests/test_01.png output.png 120 780
+./filter ./tests/test_01.png output.png 150 750
+./filter ./tests/test_01.png output.png 180 720
+./filter ./tests/test_01.png output.png 210 690
+./filter ./tests/test_01.png output.png 240 660
+./filter ./tests/test_01.png output.png 270 630
+./filter ./tests/test_01.png output.png 300 600
+./filter ./tests/test_01.png output.png 330 570
+./filter ./tests/test_01.png output.png 360 540
+./filter ./tests/test_01.png output.png 390 510
+./filter ./tests/test_01.png output.png 420 480
+./filter ./tests/test_01.png output.png 450 450
+./filter ./tests/test_01.png output.png 480 420
+./filter ./tests/test_01.png output.png 510 390
+./filter ./tests/test_01.png output.png 540 360
+./filter ./tests/test_01.png output.png 570 330
+./filter ./tests/test_01.png output.png 600 300
+./filter ./tests/test_01.png output.png 630 270
+./filter ./tests/test_01.png output.png 660 240
+./filter ./tests/test_01.png output.png 690 210
+./filter ./tests/test_01.png output.png 720 180
+./filter ./tests/test_01.png output.png 750 150
+./filter ./tests/test_01.png output.png 780 120
+./filter ./tests/test_01.png output.png 810 90
+./filter ./tests/test_01.png output.png 840 60
+./filter ./tests/test_01.png output.png 870 30
+./filter ./tests/test_01.png output.png 900 0
